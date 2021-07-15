@@ -18,7 +18,7 @@ public class CybertekLibraryLoginPage {
 
     public WebElement inputPassword;
 
-    @FindBy (className = "btn btn-lg btn-primary btn-block")
+    @FindBy ( xpath = "//button")
 
     public WebElement sighInButton;
 }
