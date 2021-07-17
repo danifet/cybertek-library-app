@@ -58,4 +58,12 @@ public class Login_StepDefinitions {
         CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
         cybertekLibraryLoginPage.inputPassword.sendKeys(ConfigurationReader.getProperty("studentPassword"));
     }
+
+
+    @When("user enters student <username>")
+    public void userEntersStudentUsername(String username) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputEmail.sendKeys(username);
+    }
+
 }

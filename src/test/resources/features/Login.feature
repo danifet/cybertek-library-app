@@ -18,3 +18,4 @@ Feature: Cybertek library login feature
     When user enters student username
     And user enters student password
     Then user should see the dashboard
+
