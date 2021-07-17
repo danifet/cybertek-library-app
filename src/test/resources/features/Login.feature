@@ -13,7 +13,7 @@ Feature: Cybertek library login feature
     And user enters librarian password
     Then user should see the dashboard
 
-  @Student
+  @Student2
   Scenario: Login as a student
     When user enters student username
     And user enters student password

@@ -60,10 +60,4 @@ public class Login_StepDefinitions {
     }
 
 
-    @When("user enters student <username>")
-    public void userEntersStudentUsername(String username) {
-        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
-        cybertekLibraryLoginPage.inputEmail.sendKeys(username);
-    }
-
-}
+   }
