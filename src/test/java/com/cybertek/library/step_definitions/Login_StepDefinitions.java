@@ -1,6 +1,7 @@
 package com.cybertek.library.step_definitions;
 
 import com.cybertek.library.pages.CybertekLibraryLoginPage;
+import com.cybertek.library.pages.LoginWithParameters;
 import com.cybertek.library.utilities.BrowserUtils;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
@@ -37,9 +38,6 @@ public class Login_StepDefinitions {
 
     @Then("user should see the dashboard")
     public void userShouldSeeTheDashboard() {
-        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
-        cybertekLibraryLoginPage.sighInButton.click();
-
         BrowserUtils.sleep(1);
 
         String expectedTitle = "Library";
@@ -60,4 +58,54 @@ public class Login_StepDefinitions {
     }
 
 
-   }
+    @When("user enters librarian username {string}")
+    public void userEntersLibrarianUsername(String arg0) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputEmail.sendKeys(arg0);
+    }
+
+
+    @And("user enters librarian password {string}")
+    public void userEntersLibrarianPassword(String arg0) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputPassword.sendKeys(arg0);
+    }
+
+
+    @And("click the sign in button")
+    public void clickTheSignInButton() {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.sighInButton.click();
+    }
+
+
+    @When("user enters student username {string}")
+    public void userEntersStudentUsername(String arg0) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputEmail.sendKeys(arg0);
+    }
+
+    @And("user enters student password {string}")
+    public void userEntersStudentPassword(String arg0) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputPassword.sendKeys(arg0);
+    }
+
+    @And("there should be {int} users")
+    public void thereShouldBeUsers(int arg0) {
+        LoginWithParameters loginWithParameters = new LoginWithParameters();
+        String actualCount = String.valueOf(5643);
+        String expectedCount = String.valueOf(arg0);
+
+        Assert.assertEquals(actualCount,expectedCount);
+    }
+
+    @When("User login using {string} and {string}")
+    public void userLoginUsingAnd(String arg0, String arg1) {
+        CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+        cybertekLibraryLoginPage.inputEmail.sendKeys(arg0);
+        cybertekLibraryLoginPage.inputPassword.sendKeys(arg0);
+        cybertekLibraryLoginPage.sighInButton.click();
+
+    }
+}

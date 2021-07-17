@@ -7,7 +7,7 @@ Feature: Cybertek library login feature
   Background:
     Given User is on the login page
 
-  @Librarian
+  @Librarian1
   Scenario: Login as a librarian
     When user enters librarian username
     And user enters librarian password
