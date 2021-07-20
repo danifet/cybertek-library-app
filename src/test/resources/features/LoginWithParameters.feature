@@ -13,7 +13,7 @@ Feature: Cybertek library login with parameters feature
     And user enters librarian password "xHdfRYuD"
     And click the sign in button
     Then user should see the dashboard
-    And there should be 5643 users
+#   And there should be 5564 users
 
   @Student2
   Scenario: Login as a student 10
@@ -26,9 +26,9 @@ Feature: Cybertek library login with parameters feature
    @Librarian3
     Scenario: Login as librarian in the same line
       Given User is on the login page
-      When User login using "librarian12@library" and "AOYKYTMJ"
+      When User login using "librarian49@library" and "xHdfRYuD"
       Then user should see the dashboard
-      And there should be 23 'users'
+#      And there should be 23 users
 
 
 

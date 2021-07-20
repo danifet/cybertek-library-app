@@ -15,6 +15,8 @@ public class Login_StepDefinitions {
 
     @Given("User is on the login page")
     public void userIsOnTheLoginPage() {
+
+        BrowserUtils.sleep(1);
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         String expectedTitle = "Login - Library";
         String actualTitle = Driver.getDriver().getTitle();
@@ -43,6 +45,8 @@ public class Login_StepDefinitions {
         String expectedTitle = "Library";
         String actualTitle = Driver.getDriver().getTitle();
         Assert.assertEquals(expectedTitle, actualTitle);
+
+        Driver.closeDriver();
     }
 
     @When("user enters student username")
@@ -94,7 +98,7 @@ public class Login_StepDefinitions {
     @And("there should be {int} users")
     public void thereShouldBeUsers(int arg0) {
         LoginWithParameters loginWithParameters = new LoginWithParameters();
-        String actualCount = String.valueOf(5643);
+        String actualCount = loginWithParameters.userCount.getText();
         String expectedCount = String.valueOf(arg0);
 
         Assert.assertEquals(actualCount,expectedCount);
@@ -108,4 +112,6 @@ public class Login_StepDefinitions {
         cybertekLibraryLoginPage.sighInButton.click();
 
     }
+
+
 }
