@@ -12,6 +12,6 @@ Feature: Show records
     And click the sign in button
     Then user should see the dashboard
 
-    Then user clicks on Users
+    Then user clicks on Users link
     Then verify dropDown
     And  verify all dropdown options

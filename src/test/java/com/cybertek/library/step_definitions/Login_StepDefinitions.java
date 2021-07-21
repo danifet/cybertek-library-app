@@ -2,6 +2,7 @@ package com.cybertek.library.step_definitions;
 
 import com.cybertek.library.pages.CybertekLibraryLoginPage;
 import com.cybertek.library.pages.LoginWithParameters;
+import com.cybertek.library.pages.UsersLinkPage;
 import com.cybertek.library.utilities.BrowserUtils;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
@@ -17,6 +18,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Login_StepDefinitions {
+
+    UsersLinkPage usersLinkPage = new UsersLinkPage();
+    Select drop;
 
     @Given("User is on the login page")
     public void userIsOnTheLoginPage() {
@@ -118,16 +122,16 @@ public class Login_StepDefinitions {
     }
 
 
-    @Then("user clicks on Users")
+    @Then("user clicks on Users link")
     public void userClicksOnUsers() {
-        LoginWithParameters loginWithParameters = new LoginWithParameters();
-        loginWithParameters.userr.click();
+
+        usersLinkPage.userr.click();
     }
 
     @Then("verify dropDown")
     public void verifyDropDown() {
-        LoginWithParameters loginWithParameters = new LoginWithParameters();
-        Select drop = new Select(loginWithParameters.showDrop);
+
+        drop = new Select(usersLinkPage.showDrop);
         String actualOption = drop.getFirstSelectedOption().getText();
         String expectedOption = String.valueOf(10);
         System.out.println(actualOption);
@@ -137,8 +141,8 @@ public class Login_StepDefinitions {
 
     @And("verify all dropdown options")
     public void verifyAllDropdownOptions() {
-        LoginWithParameters loginWithParameters = new LoginWithParameters();
-        Select drop = new Select(loginWithParameters.showDrop);
+
+        Select drop = new Select(usersLinkPage.showDrop);
         List<WebElement> actualOptions = drop.getOptions();
         String expectedOption = String.valueOf(10);
         int [] actuall = new int[7];
@@ -155,5 +159,26 @@ public class Login_StepDefinitions {
 
 
 
+    }
+
+    @And("User login as a librarian")
+    public void userLoginAsALibrarian() {
+
+            CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+            cybertekLibraryLoginPage.inputEmail.sendKeys("librarian18@library");
+
+            cybertekLibraryLoginPage.inputPassword.sendKeys("rKG2sP88");
+
+            cybertekLibraryLoginPage.sighInButton.click();
+
+    }
+
+    @Then("table should have following column names:")
+    public void tableShouldHaveFollowingColumnNames(List <String> expectedColumnNames) {
+        //List <WebElement> tableRow1 = usersLinkPage.tableRow.findElements()
+        List <String> actualColumnNames = BrowserUtils.getTextWebElements(usersLinkPage.tableHeaders);
+        System.out.println(actualColumnNames);
+
+        Assert.assertEquals(actualColumnNames, expectedColumnNames);
     }
 }

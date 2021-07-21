@@ -15,13 +15,7 @@ public class LoginWithParameters {
 
     public WebElement userCount;
 
-    @FindBy (xpath = "//a[@href='#users']")
 
-    public WebElement userr;
-
-    @FindBy (xpath = "//select[@name ='tbl_users_length' ]")
-
-    public WebElement showDrop;
 
 
 }
