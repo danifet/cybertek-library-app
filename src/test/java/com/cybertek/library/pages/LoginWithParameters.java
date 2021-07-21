@@ -4,7 +4,6 @@ import com.cybertek.library.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 public class LoginWithParameters {
     public LoginWithParameters() {
@@ -14,6 +13,12 @@ public class LoginWithParameters {
     @FindBy(id = "user_count")
 
     public WebElement userCount;
+
+    @FindBy (xpath = "//a[@id = 'navbarDropdown']/span")
+
+    public WebElement accountName;
+
+
 
 
 

@@ -20,6 +20,8 @@ import java.util.List;
 public class Login_StepDefinitions {
 
     UsersLinkPage usersLinkPage = new UsersLinkPage();
+    CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+    LoginWithParameters loginWithParameters = new LoginWithParameters();
     Select drop;
 
     @Given("User is on the login page")
@@ -164,7 +166,7 @@ public class Login_StepDefinitions {
     @And("User login as a librarian")
     public void userLoginAsALibrarian() {
 
-            CybertekLibraryLoginPage cybertekLibraryLoginPage = new CybertekLibraryLoginPage();
+
             cybertekLibraryLoginPage.inputEmail.sendKeys("librarian18@library");
 
             cybertekLibraryLoginPage.inputPassword.sendKeys("rKG2sP88");
@@ -180,5 +182,27 @@ public class Login_StepDefinitions {
         System.out.println(actualColumnNames);
 
         Assert.assertEquals(actualColumnNames, expectedColumnNames);
+    }
+
+
+
+    @Then("account holder name should be {string}")
+    public void accountHolderNameShouldBe(String arg0) {
+        BrowserUtils.waitForVisibility(loginWithParameters.accountName, 5);
+        String actual= loginWithParameters.accountName.getText();
+
+      Assert.assertEquals("Account name is not the same",arg0, actual);
+        System.out.println(actual);
+
+    Driver.closeDriver();
+    }
+
+    @And("user logins using {string} and {string}")
+    public void userLoginsUsingAnd(String arg0, String arg1) {
+        cybertekLibraryLoginPage.inputEmail.sendKeys(arg0);
+
+        cybertekLibraryLoginPage.inputPassword.sendKeys(arg1);
+
+        cybertekLibraryLoginPage.sighInButton.click();
     }
 }
