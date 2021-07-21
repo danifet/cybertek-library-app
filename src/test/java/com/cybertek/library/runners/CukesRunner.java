@@ -9,7 +9,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = "html:target/reports/cucumber-report.html",
         features = "src/test/resources/features",
-        glue = "com/cybertek/library/step_definitions"
+        glue = "com/cybertek/library/step_definitions",
+        dryRun = false,
+        tags = "@dropDown"
 
 
 )

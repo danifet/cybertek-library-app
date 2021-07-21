@@ -10,6 +10,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Login_StepDefinitions {
 
@@ -46,7 +51,6 @@ public class Login_StepDefinitions {
         String actualTitle = Driver.getDriver().getTitle();
         Assert.assertEquals(expectedTitle, actualTitle);
 
-        Driver.closeDriver();
     }
 
     @When("user enters student username")
@@ -114,4 +118,42 @@ public class Login_StepDefinitions {
     }
 
 
+    @Then("user clicks on Users")
+    public void userClicksOnUsers() {
+        LoginWithParameters loginWithParameters = new LoginWithParameters();
+        loginWithParameters.userr.click();
+    }
+
+    @Then("verify dropDown")
+    public void verifyDropDown() {
+        LoginWithParameters loginWithParameters = new LoginWithParameters();
+        Select drop = new Select(loginWithParameters.showDrop);
+        String actualOption = drop.getFirstSelectedOption().getText();
+        String expectedOption = String.valueOf(10);
+        System.out.println(actualOption);
+
+        Assert.assertEquals(actualOption,expectedOption);
+    }
+
+    @And("verify all dropdown options")
+    public void verifyAllDropdownOptions() {
+        LoginWithParameters loginWithParameters = new LoginWithParameters();
+        Select drop = new Select(loginWithParameters.showDrop);
+        List<WebElement> actualOptions = drop.getOptions();
+        String expectedOption = String.valueOf(10);
+        int [] actuall = new int[7];
+        int [] expected = new int[]{5, 10, 15, 50, 100, 200, 500};
+        int count = 0;
+         for (WebElement each:
+             actualOptions) {
+            System.out.println(each.getText());
+            actuall [count] = Integer.parseInt(each.getText());
+            count++;
+        }
+
+         Assert.assertTrue(Arrays.equals(actuall,expected));
+
+
+
+    }
 }
